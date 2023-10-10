@@ -8,3 +8,13 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
+resource "azurerm_resource_group" "azurermNetworkWatcher" {
+  name     = "NetworkWatcherRG"
+  location = "Australia East"
+}
+
+resource "azurerm_network_watcher" "azurermNetworkWatcher" {
+  name                = "NetworkWatcherRG"
+  location            = azurerm_resource_group.azurermNetworkWatcher.location
+  resource_group_name = azurerm_resource_group.azurermNetworkWatcher.name
+}
